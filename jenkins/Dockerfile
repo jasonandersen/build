@@ -2,7 +2,7 @@
 # Jason Andersen
 # 2016.07.16
 
-FROM jenkins
+FROM jenkins:2.7.1
 
 #Install Maven and JDK8
 USER root
@@ -14,3 +14,6 @@ RUN apt-get update && apt-get install -y --force-yes \
 RUN mkdir /opt/code && \
     chown -RH jenkins:jenkins /opt/code
 
+USER jenkins
+COPY plugins.txt /usr/share/jenkins/plugins.txt
+RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
