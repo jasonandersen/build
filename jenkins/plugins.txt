@@ -1,10 +1,10 @@
 cloudbees-folder:5.12
-git:2.5.1
+git:2.5.2
 ssh-credentials:1.12
-credentials:1.25
-matrix-project:1.6
+credentials:2.1.4
+matrix-project:1.7.1
 mailer:1.17
-scm-api:1.0
+scm-api:1.2
 workflow-scm-step:2.2
 workflow-step-api:2.2
 structs:1.2
