@@ -15,5 +15,7 @@ RUN mkdir /opt/code && \
     chown -RH jenkins:jenkins /opt/code
 
 USER jenkins
-COPY plugins.txt /usr/share/jenkins/plugins.txt
+
+#Setup Jenkins plugins
+COPY plugins.txt /usr/share/jenkins/plugins.txt 
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
