@@ -7,3 +7,11 @@ services:
     volumes:
       - "./jenkins/.jenkins_home/:/var/jenkins_home"
       - "/Users/jason/dev/workspace:/opt/code"
+
+  sonarqube:
+    image: build-sonar
+    ports:
+      - "9000:9000"
+    volumes:
+      - "./sonarqube/.sonarqube_home/:/opt/sonarqube"
+      - "/Users/jason/dev/workspace:/opt/code"
