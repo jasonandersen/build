@@ -1,0 +1,7 @@
+version: '2'
+services:
+  jenkins:
+    image: build-jenkins
+    volumes:
+      - "/Users/jason/dev/infrastructure/build/jenkins/.jenkins_home/:/var/jenkins_home"
+      - "/Users/jason/dev/workspace:/opt/code"
