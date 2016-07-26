@@ -1,5 +1,12 @@
 version: '2'
 services:
+  sonardb:
+    image: build-sonardb
+    volumes:
+      - "./mysql/.data/:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+
   jenkins:
     image: build-jenkins
     ports:
@@ -9,6 +16,8 @@ services:
       - "/Users/jason/dev/workspace:/opt/code"
 
   sonarqube:
+    depends_on:
+      - sonardb
     image: build-sonar
     ports:
       - "9000:9000"
