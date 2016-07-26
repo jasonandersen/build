@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
+  <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties/>
@@ -23,6 +24,7 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>JDK8</jdk>
   <triggers>
     <hudson.triggers.SCMTrigger>
       <spec>H/15 * * * *</spec>
@@ -42,7 +44,7 @@
     <net.hurstfrost.hudson.sounds.HudsonSoundsNotifier plugin="sounds@0.5">
       <soundEvents>
         <net.hurstfrost.hudson.sounds.HudsonSoundsNotifier_-SoundEvent>
-          <soundId>toilet</soundId>
+          <soundId></soundId>
           <toResult>
             <name>FAILURE</name>
             <ordinal>2</ordinal>
@@ -63,9 +65,9 @@
               <completeBuild>true</completeBuild>
             </hudson.model.Result>
             <hudson.model.Result>
-              <name>NOT_BUILT</name>
-              <ordinal>3</ordinal>
-              <color>NOTBUILT</color>
+              <name>ABORTED</name>
+              <ordinal>4</ordinal>
+              <color>ABORTED</color>
               <completeBuild>false</completeBuild>
             </hudson.model.Result>
             <hudson.model.Result>
@@ -75,15 +77,15 @@
               <completeBuild>true</completeBuild>
             </hudson.model.Result>
             <hudson.model.Result>
-              <name>ABORTED</name>
-              <ordinal>4</ordinal>
-              <color>ABORTED</color>
+              <name>NOT_BUILT</name>
+              <ordinal>3</ordinal>
+              <color>NOTBUILT</color>
               <completeBuild>false</completeBuild>
             </hudson.model.Result>
           </fromResults>
         </net.hurstfrost.hudson.sounds.HudsonSoundsNotifier_-SoundEvent>
         <net.hurstfrost.hudson.sounds.HudsonSoundsNotifier_-SoundEvent>
-          <soundId>Yahoo.Yodel</soundId>
+          <soundId></soundId>
           <toResult>
             <name>SUCCESS</name>
             <ordinal>0</ordinal>
@@ -98,9 +100,9 @@
               <completeBuild>true</completeBuild>
             </hudson.model.Result>
             <hudson.model.Result>
-              <name>NOT_BUILT</name>
-              <ordinal>3</ordinal>
-              <color>NOTBUILT</color>
+              <name>ABORTED</name>
+              <ordinal>4</ordinal>
+              <color>ABORTED</color>
               <completeBuild>false</completeBuild>
             </hudson.model.Result>
             <hudson.model.Result>
@@ -110,15 +112,15 @@
               <completeBuild>true</completeBuild>
             </hudson.model.Result>
             <hudson.model.Result>
-              <name>ABORTED</name>
-              <ordinal>4</ordinal>
-              <color>ABORTED</color>
+              <name>NOT_BUILT</name>
+              <ordinal>3</ordinal>
+              <color>NOTBUILT</color>
               <completeBuild>false</completeBuild>
             </hudson.model.Result>
           </fromResults>
         </net.hurstfrost.hudson.sounds.HudsonSoundsNotifier_-SoundEvent>
         <net.hurstfrost.hudson.sounds.HudsonSoundsNotifier_-SoundEvent>
-          <soundId>YAWN</soundId>
+          <soundId></soundId>
           <toResult>
             <name>SUCCESS</name>
             <ordinal>0</ordinal>
