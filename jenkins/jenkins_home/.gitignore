@@ -1,6 +1,7 @@
 .bash_history
 .java
 .m2
+.oracle_jre_usage
 copy_reference_file.log
 jobs/**/builds
 jobs/**/nextBuildNumber

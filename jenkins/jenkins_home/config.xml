@@ -18,23 +18,9 @@
   <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
   <jdks>
     <jdk>
-      <name>JDK8</name>
-      <home>/usr/lib/jvm/java-8-openjdk-amd64/</home>
+      <name>oracle-jdk8</name>
+      <home>/usr/lib/jvm/java-8-oracle</home>
       <properties/>
-    </jdk>
-    <jdk>
-      <name></name>
-      <home></home>
-      <properties>
-        <hudson.tools.InstallSourceProperty>
-          <installers>
-            <hudson.tools.JDKInstaller>
-              <id></id>
-              <acceptLicense>false</acceptLicense>
-            </hudson.tools.JDKInstaller>
-          </installers>
-        </hudson.tools.InstallSourceProperty>
-      </properties>
     </jdk>
   </jdks>
   <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>

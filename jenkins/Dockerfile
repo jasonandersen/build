@@ -2,13 +2,12 @@
 # Jason Andersen
 # 2016.07.16
 
-FROM jenkins:2.7.1
+FROM base-jenkins
 
-#Install Maven and JDK8
 USER root
-RUN apt-get update && apt-get install -y --force-yes \
-    maven \
-    openjdk-8-jdk
+
+#Install Maven
+RUN apt-get update && apt-get install -y --force-yes maven 
 
 # Setup directory for code repositories
 RUN mkdir /opt/code && \
