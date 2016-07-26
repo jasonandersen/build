@@ -9,5 +9,6 @@ plugins/**
 logs/**
 queue.xml
 queue.xml.bak
+updates
 war/**
 workspace/**
