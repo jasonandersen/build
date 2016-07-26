@@ -3,6 +3,7 @@
 .m2
 copy_reference_file.log
 jobs/**/builds
+jobs/**/nextBuildNumber
 jobs/**/scm-polling.log
 plugins/**
 logs/**
