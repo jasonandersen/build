@@ -1,0 +1,11 @@
+.bash_history
+.java
+.m2
+copy_reference_file.log
+jobs/**/builds
+jobs/**/scm-polling.log
+plugins/**
+logs/**
+queue.xml.bak
+war/**
+workspace/**
