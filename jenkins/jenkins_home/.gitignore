@@ -7,6 +7,7 @@ jobs/**/nextBuildNumber
 jobs/**/scm-polling.log
 plugins/**
 logs/**
+queue.xml
 queue.xml.bak
 war/**
 workspace/**
