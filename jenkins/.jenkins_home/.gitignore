@@ -7,7 +7,7 @@ jobs/**/builds
 jobs/**/nextBuildNumber
 jobs/**/scm-polling.log
 plugins/**
-knotlog
+./knotlog
 logs/**
 queue.xml
 queue.xml.bak
