@@ -16,7 +16,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - "./jenkins/.jenkins_home/:/var/jenkins_home"
+      - "./jenkins/jenkins_home/:/var/jenkins_home"
       - "$HOST_CODE_PATH:/opt/code"
     env_file: ./.env
 

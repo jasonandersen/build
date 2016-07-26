@@ -2,4 +2,4 @@
 # Jason Andersen
 # 2016.07.23
 
-FROM sonarqube
+FROM sonarqube:5.6
