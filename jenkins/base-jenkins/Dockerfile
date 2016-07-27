@@ -1,7 +1,8 @@
 # This is copied from the official Jenkins Dockerfile here:
 # https://hub.docker.com/_/jenkins/
 # 
-# The official Jenkins Dockerfile uses OpenJDK8. This file is built off Oracle's JDK8.
+# The official Jenkins Dockerfile uses OpenJDK8. This file is built off an installation of Oracle's JDK8 which
+# is why it's copied down to this repository instead of using the canonical file on Docker Hub.
 FROM oracle-jdk8
 
 RUN apt-get update && apt-get install -y git curl zip && rm -rf /var/lib/apt/lists/*

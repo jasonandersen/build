@@ -1,6 +1,7 @@
 #
 # Oracle Java 8 Dockerfile
-#
+# 
+# Copied from here:
 # https://github.com/cogniteev/docker-oracle-java
 # https://github.com/cogniteev/docker-oracle-java/tree/master/oracle-java8
 #
