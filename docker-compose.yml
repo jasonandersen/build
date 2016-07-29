@@ -29,3 +29,11 @@ services:
       - "./sonarqube/.sonarqube_home/:/opt/sonarqube"
       - "$HOST_CODE_PATH:/opt/code"
     env_file: ./.env
+
+  sonardb:
+    image: build-mysql
+    ports: 
+      - "3306:3306"
+    volumes:
+      - "./mysql/.data/:/var/lib/mysql"
+    env_file: ./.env
