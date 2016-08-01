@@ -1,10 +1,9 @@
 # build server
 # 
 # This compose file will bring up all three containers required to run this build server.
-# NOTE: this docker-compose file requires a .env file or an environment variable that
-# specifies where the code repo is located on the host machine.
-#
-# HOST_CODE_PATH=/path/to/code/repository
+# 
+# NOTE: this file has an external dependency on environment variables described in the .env
+# file in this same directory.
 # 
 # Jason Andersen
 # 2016.07.26
@@ -23,11 +22,15 @@ services:
 
   sonarqube:    
     image: build-sonar
+    depends_on:
+      - sonardb
     ports:
       - "9000:9000"
     volumes:
       - "./sonarqube/.sonarqube_home/:/opt/sonarqube"
       - "$HOST_CODE_PATH:/opt/code"
+    environment: 
+      - SONARQUBE_JDBC_URL=jdbc:mysql://sonardb:3306/sonar&useUnicode=true&characterEncoding=utf8
     env_file: ./.env
 
   sonardb:
