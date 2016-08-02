@@ -12,6 +12,8 @@ version: '2'
 services:
   jenkins:
     image: build-jenkins
+    depends_on:
+      - sonarqube
     ports:
       - "8080:8080"
     volumes:
@@ -30,13 +32,15 @@ services:
       - "./sonarqube/.sonarqube_home/:/opt/sonarqube"
       - "$HOST_CODE_PATH:/opt/code"
     environment: 
-      - SONARQUBE_JDBC_URL=jdbc:mysql://sonardb:3306/sonar&useUnicode=true&characterEncoding=utf8
+      - SONARQUBE_JDBC_URL=jdbc:mysql://sonardb:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance
     env_file: ./.env
 
   sonardb:
-    image: build-mysql
-    ports: 
+    image: build-sonardb
+    ports:
       - "3306:3306"
     volumes:
       - "./mysql/.data/:/var/lib/mysql"
+    environment:
+      - MYSQL_ROOT_PASSWORD=mmouse
     env_file: ./.env

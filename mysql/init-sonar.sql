@@ -1,3 +1,10 @@
+# This script initializes the sonarqube database and credentials if they don't exist in the database already.
+# 
+# Jason Andersen
+# 2016.07.31
+
 CREATE DATABASE IF NOT EXISTS sonar;
-CREATE USER IF NOT EXISTS '$SONAR_JDBC_USERNAME'@'localhost' IDENTIFIED BY '$SONAR_JDBC_PASSWORD';
-GRANT ALL ON 'sonar'.* to '$SONAR_JDBC_USERNAME'@'localhost' IDENTIFIED BY '$SONAR_JDBC_PASSWORD'; 
+
+CREATE USER IF NOT EXISTS 'sonar'@'%' IDENTIFIED BY 'sonar';
+
+GRANT ALL ON sonar.* TO 'sonar'@'%';

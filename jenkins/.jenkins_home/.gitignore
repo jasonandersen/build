@@ -2,6 +2,7 @@
 .java
 .m2
 .oracle_jre_usage
+.sonar
 copy_reference_file.log
 jobs/**/builds
 jobs/**/nextBuildNumber
