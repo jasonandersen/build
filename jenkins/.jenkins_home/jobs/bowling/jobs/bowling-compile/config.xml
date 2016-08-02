@@ -46,7 +46,7 @@
           <targetRepoName>local</targetRepoName>
           <tagName>LATEST_BUILD_COMPILED</tagName>
           <tagMessage>This is the latest build to successfully compile.</tagMessage>
-          <createTag>true</createTag>
+          <createTag>false</createTag>
           <updateTag>false</updateTag>
         </hudson.plugins.git.GitPublisher_-TagToPush>
       </tagsToPush>
