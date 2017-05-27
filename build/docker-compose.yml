@@ -17,8 +17,8 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - "./jenkins/.jenkins_home/:/var/jenkins_home"
-      - "./.m2:/var/jenkins_home/.m2" 
+      - "$HOST_JENKINS_HOME:/var/jenkins_home"
+      - "$HOST_MAVEN_HOME:/var/jenkins_home/.m2" 
       - "$HOST_CODE_PATH:/opt/code"
     env_file: ./.env
 
@@ -29,7 +29,7 @@ services:
     ports:
       - "9000:9000"
     volumes:
-      - "./sonarqube/.sonarqube_home/:/opt/sonarqube"
+      - "$HOST_SONAR_HOME:/opt/sonarqube"
       - "$HOST_CODE_PATH:/opt/code"
     environment: 
       - SONARQUBE_JDBC_URL=jdbc:mysql://sonardb:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance
@@ -38,5 +38,5 @@ services:
   sonardb:
     image: build-sonardb
     volumes:
-      - "./mysql/.data/:/var/lib/mysql"
+      - "$HOST_MYSQL_DATA:/var/lib/mysql"
     env_file: ./.env
