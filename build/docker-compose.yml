@@ -29,8 +29,11 @@ services:
     ports:
       - "9000:9000"
     volumes:
-      - "$HOST_SONAR_HOME:/opt/sonarqube"
       - "$HOST_CODE_PATH:/opt/code"
+      - "$HOST_SONAR_DATA:/opt/sonarqube/data"
+      - "$HOST_SONAR_CONF:/opt/sonarqube/conf"
+      - "$HOST_SONAR_EXTENSIONS:/opt/sonarqube/extensions"
+      - "$HOST_SONAR_PLUGINS=/opt/sonarqube/lib/bundled-plugins"
     environment: 
       - SONARQUBE_JDBC_URL=jdbc:mysql://sonardb:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance
     env_file: ./.env
