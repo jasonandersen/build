@@ -18,7 +18,6 @@ services:
       - "8080:8080"
     volumes:
       - "$HOST_JENKINS_HOME:/var/jenkins_home"
-      - "$HOST_MAVEN_HOME:/var/jenkins_home/.m2" 
       - "$HOST_CODE_PATH:/opt/code"
     env_file: ./.env
 
@@ -43,3 +42,14 @@ services:
     volumes:
       - "$HOST_MYSQL_DATA:/var/lib/mysql"
     env_file: ./.env
+
+  registry:
+    restart: always
+    image: registry:2
+    ports:
+      - "5000:5000"
+
+  nexus:
+    image: sonatype/nexus:oss
+    ports:
+      - "8081:8081"
