@@ -3,6 +3,7 @@
 # host-setup.sh
 # This script will setup an Ubuntu host to act as a Dockerized build environment.
 
+echo "Starting build environment Docker host setup script"
 BASE_DIR="/apps/build"
 JENKINS_DIR=$BASE_DIR/jenkins
 SONARQUBE_DIR=$BASE_DIR/sonarqube
@@ -10,6 +11,7 @@ MYSQL_DIR=$BASE_DIR/mysql
 NEXUS_DIR=$BASE_DIR/nexus
 REPO_DIR=$BASE_DIR/repo
 
+echo "Installing Docker"
 # Install Docker
 sudo apt-get update
 sudo apt-get remove docker docker-engine
@@ -32,6 +34,7 @@ sudo docker run hello-world
 # Install Docker Compose
 sudo apt-get install docker-compose
 
+echo "Installing git & vim"
 # Install git
 sudo apt-get install git
 
@@ -41,11 +44,13 @@ sudo apt-get install vim
 # Create directory to house code repository
 mkdir -p $REPO_DIR
 
+echo "Cloning infrastructure repository"
 # Clone into git infrastructure repository
 cd $REPO_DIR
 git clone https://github.com/jasonandersen/infrastructure.git
 cd $REPO_DIR/infrastructure/build
 
+echo "Building directories to house data from containers"
 # Create directories for all the build applications to house data on the host system.
 mkdir -pv $JENKINS_DIR
 mkdir -pv $SONARQUBE_DIR/conf
@@ -58,12 +63,14 @@ mkdir -pv $NEXUS_DIR
 # Nexus requires UID 200 to own the Nexus working directory
 sudo chown 200 $NEXUS_DIR
 
+echo "Creating Docker Compose environment file"
 # Create .env file specifically for this host
 
-
+echo "Building Docker images"
 # Run script to build Docker containers 
 sudo ./buildimgs.sh
 
+echo "Booting up the build environment"
 # Run Docker Compose to stand up environment
 sudo docker-compose up -d
 
