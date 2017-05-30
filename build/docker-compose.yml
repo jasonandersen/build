@@ -51,5 +51,7 @@ services:
 
   nexus:
     image: sonatype/nexus:oss
+    volumes:
+      - "$HOST_NEXUS_DATA:/sonatype-work"
     ports:
       - "8081:8081"
