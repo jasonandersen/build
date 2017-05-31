@@ -1,0 +1,17 @@
+.bash_history
+.java
+.m2
+.oracle_jre_usage
+.sonar
+copy_reference_file.log
+jobs/**/builds
+jobs/**/nextBuildNumber
+jobs/**/scm-polling.log
+plugins/**
+knotlog/
+logs/**
+queue.xml
+queue.xml.bak
+updates
+war/**
+workspace/**
