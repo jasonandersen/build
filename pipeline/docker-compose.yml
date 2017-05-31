@@ -45,14 +45,14 @@ services:
 
   registry:
     restart: always
-    image: registry:2
+    image: pipeline/registry
     volumes:
       - "$HOST_DOCKER_REGISTRY:/var/lib/registry"
     ports:
       - "5000:5000"
 
   nexus:
-    image: sonatype/nexus:oss
+    image: pipeline/nexus
     volumes:
       - "$HOST_NEXUS_DATA:/sonatype-work"
     ports:

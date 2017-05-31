@@ -11,3 +11,9 @@ docker build ./sonarqube/ -t pipeline/sonarqube
 docker build ./jenkins/base-jenkins/oracle-jdk-8/ -t oracle-jdk8
 docker build ./jenkins/base-jenkins/ -t base-jenkins
 docker build ./jenkins/ -t pipeline/jenkins
+
+# nexus artifact repo image
+docker build ./nexus/ -t pipeline/nexus
+
+# docker registry image
+docker build ./registry/ -t pipeline/registry
