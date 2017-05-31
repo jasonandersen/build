@@ -14,7 +14,9 @@
 
 echo "********* Starting build environment Docker host setup script *********"
 
+# All environment data will be stored underneath this directory
 BASE_DIR="/apps/build"
+
 JENKINS_DIR=$BASE_DIR/jenkins
 SONARQUBE_DIR=$BASE_DIR/sonarqube
 SONARQUBE_CONF_DIR=$SONARQUBE_DIR/conf
