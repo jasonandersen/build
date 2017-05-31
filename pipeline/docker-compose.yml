@@ -8,7 +8,7 @@
 # Jason Andersen
 # 2016.07.26
 
-version: '2'
+version: '3'
 services:
   jenkins:
     image: pipeline/jenkins
@@ -24,7 +24,7 @@ services:
   sonarqube:    
     image: pipeline/sonarqube
     depends_on:
-      - sonardb
+      - sonarqube-db
     ports:
       - "9000:9000"
     volumes:
@@ -37,7 +37,7 @@ services:
       - SONARQUBE_JDBC_URL=jdbc:mysql://sonarqube-db:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance
     env_file: ./.env
 
-  sonardb:
+  sonarqube-db:
     image: pipeline/sonarqube-db
     volumes:
       - "$HOST_MYSQL_DATA:/var/lib/mysql"
