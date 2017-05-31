@@ -8,8 +8,12 @@
 # Jason Andersen
 # 2016.07.26
 
-version: '3'
+version: "3.1"
+secrets:
+  mysql-root-pwd:
+    file: ./secrets/mysql-root-pwd
 services:
+  # Jenkins CI server
   jenkins:
     image: pipeline/jenkins
     depends_on:
@@ -20,7 +24,7 @@ services:
       - "$HOST_JENKINS_HOME:/var/jenkins_home"
       - "$HOST_CODE_PATH:/opt/code"
     env_file: ./.env
-
+  # SonarQube static analysis engine
   sonarqube:    
     image: pipeline/sonarqube
     depends_on:
@@ -34,15 +38,18 @@ services:
       - "$HOST_SONAR_EXTENSIONS:/opt/sonarqube/extensions"
       - "$HOST_SONAR_PLUGINS=/opt/sonarqube/lib/bundled-plugins"
     environment: 
-      - SONARQUBE_JDBC_URL=jdbc:mysql://sonarqube-db:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance
+      - SONARQUBE_JDBC_URL=jdbc:mysql://sonarqube-db:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance&useSSL=false
     env_file: ./.env
-
+  # MySQL database used by SonarQube to store code metrics
   sonarqube-db:
     image: pipeline/sonarqube-db
     volumes:
       - "$HOST_MYSQL_DATA:/var/lib/mysql"
-    env_file: ./.env
-
+    secrets:
+      - mysql-root-pwd
+    environment:
+      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/mysql-root-pwd
+  # Docker registry to house images
   registry:
     restart: always
     image: pipeline/registry
@@ -50,10 +57,11 @@ services:
       - "$HOST_DOCKER_REGISTRY:/var/lib/registry"
     ports:
       - "5000:5000"
-
+  # Nexus artifact repository to store and serve code binaries
   nexus:
     image: pipeline/nexus
     volumes:
       - "$HOST_NEXUS_DATA:/sonatype-work"
     ports:
       - "8081:8081"
+
