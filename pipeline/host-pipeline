@@ -100,7 +100,7 @@ echo "SONARQUBE_JDBC_PASSWORD=" >> $WORK_DIR/auto.env
 
 
 # Run script to build Docker containers 
-sudo ./buildimgs.sh
+sudo ./build-images
 
 echo "********* Booting up the build environment *********"
 # Run Docker Compose to stand up environment
