@@ -1,16 +1,16 @@
 #!/bin/bash
 # 
-# host-setup.sh
+# host-pipeline
 #
 # This script will setup an Ubuntu host to act as a Dockerized build environment. This
 # script requires sudo access and depends on apt-get to install required libraries.
 # This script can be run from anywhere in the file system. It will default to creating
-# all necessary directories under /apps/build with all applications storing data in
+# all necessary directories under /apps/pipeline with all applications storing data in
 # subdirectories under that directory.
 #
 # Currently, all containers are configured to mount volumes on directories on the host's
 # file system. Eventually, I should change this to data volumes. I just need to wrap my
-# head around how to backup those data-only containers.
+# head around how to backup those volumes.
 
 echo "********* Starting build environment Docker host setup script *********"
 
@@ -101,8 +101,8 @@ echo -e "HOST_SONAR_EXTENSIONS=$SONARQUBE_EXTENSIONS_DIR\n" >> $WORK_DIR/auto.en
 echo -e "HOST_SONAR_PLUGINS=$SONARQUBE_PLUGINS_DIR\n" >> $WORK_DIR/auto.env
 echo -e "HOST_NEXUS_DATA=$NEXUS_DIR\n" >> $WORK_DIR/auto.env
 echo -e "HOST_DOCKER_REGISTRY=$DOCKER_REGISTRY_DIR\n" >> $WORK_DIR/auto.env
-echo -e "SONARQUBE_JDBC_USERNAME=\n" >> $WORK_DIR/auto.env
-echo -e "SONARQUBE_JDBC_PASSWORD=\n" >> $WORK_DIR/auto.env
+echo -e "SONARQUBE_JDBC_USERNAME=sonar\n" >> $WORK_DIR/auto.env
+echo -e "SONARQUBE_JDBC_PASSWORD=sonar\n" >> $WORK_DIR/auto.env
 mv $WORK_DIR/.env $WORK_DIR/.env.bak
 mv $WORK_DIR/auto.env $WORK_DIR/.env
 
@@ -122,5 +122,7 @@ echo "# " + $MYSQL_PWD_FILE
 echo "#                                                                         #"
 echo "# ******************* Configure MYSQL Root Password ********************* #"
 
+touch $MYSQL_PWD_FILE
+chmod 600 $MYSQL_PWD_FILE
 
 
