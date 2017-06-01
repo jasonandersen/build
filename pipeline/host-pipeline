@@ -27,7 +27,8 @@ MYSQL_DIR=$BASE_DIR/mysql/data
 NEXUS_DIR=$BASE_DIR/nexus
 DOCKER_REGISTRY_DIR=$BASE_DIR/docker/registry
 REPO_DIR=$BASE_DIR/repo
-WORK_DIR=$REPO_DIR/infrastructure/build
+INFRASTRUCTURE_DIR=$REPO_DIR/infrastructure
+WORK_DIR=$INFRASTRUCTURE_DIR/build
 
 echo "********* Installing Docker *********"
 
@@ -66,7 +67,8 @@ mkdir -p $REPO_DIR
 
 echo "********* Cloning infrastructure repository *********"
 # Clone into git infrastructure repository
-git clone https://github.com/jasonandersen/infrastructure.git $REPO_DIR
+mkdir -p $INFRASTRUCTURE_DIR
+git clone https://github.com/jasonandersen/infrastructure.git $INFRASTRUCTURE_DIR
 
 echo "********* Building directories to house data from containers *********"
 # Create directories for all the build applications to house data on the host system.
