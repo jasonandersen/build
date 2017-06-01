@@ -111,18 +111,24 @@ echo "********* Building Docker images *********"
 cd $WORK_DIR
 sudo ./build-images
 
+# Ask the user for a MySQL root password
+echo ""
 echo ""
 echo ""
 echo "# ******************* Configure MYSQL Root Password ********************* #"
 echo "#                                                                         #"
-echo "# In order to complete installation, a file containing the MYSQL root     #"
-echo "# password must be created at:                                            #"
 echo "#                                                                         #"
-echo "# " + $MYSQL_PWD_FILE
 echo "#                                                                         #"
 echo "# ******************* Configure MYSQL Root Password ********************* #"
+echo ""
+echo ""
+echo ""
+echo "Please enter the password to use as the MYSQL root password:"
+
+read $MYSQL_ROOT_PWD
 
 touch $MYSQL_PWD_FILE
 chmod 600 $MYSQL_PWD_FILE
+echo $MYSQL_ROOT_PWD >> $MYSQL_PWD_FILE
 
 
