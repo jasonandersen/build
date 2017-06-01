@@ -16,6 +16,7 @@ services:
   # Jenkins CI server
   jenkins:
     image: pipeline/jenkins
+    build: ./jenkins
     depends_on:
       - sonarqube
     ports:
@@ -27,6 +28,7 @@ services:
   # SonarQube static analysis engine
   sonarqube:    
     image: pipeline/sonarqube
+    build: ./sonarqube
     depends_on:
       - sonarqube-db
     ports:
@@ -43,6 +45,7 @@ services:
   # MySQL database used by SonarQube to store code metrics
   sonarqube-db:
     image: pipeline/sonarqube-db
+    build: ./mysql
     volumes:
       - "$HOST_MYSQL_DATA:/var/lib/mysql"
     secrets:
@@ -53,6 +56,7 @@ services:
   registry:
     restart: always
     image: pipeline/registry
+    build: ./registry
     volumes:
       - "$HOST_DOCKER_REGISTRY:/var/lib/registry"
     ports:
@@ -60,6 +64,7 @@ services:
   # Nexus artifact repository to store and serve code binaries
   nexus:
     image: pipeline/nexus
+    build: nexus
     volumes:
       - "$HOST_NEXUS_DATA:/sonatype-work"
     ports:
