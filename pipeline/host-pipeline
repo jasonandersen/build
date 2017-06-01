@@ -28,7 +28,7 @@ NEXUS_DIR=$BASE_DIR/nexus
 DOCKER_REGISTRY_DIR=$BASE_DIR/docker/registry
 REPO_DIR=$BASE_DIR/repo
 INFRASTRUCTURE_DIR=$REPO_DIR/infrastructure
-WORK_DIR=$INFRASTRUCTURE_DIR/build
+WORK_DIR=$INFRASTRUCTURE_DIR/pipeline
 
 echo "********* Installing Docker *********"
 
