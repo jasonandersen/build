@@ -17,6 +17,7 @@ echo "********* Starting build environment Docker host setup script *********"
 # All environment data will be stored underneath this directory
 BASE_DIR="/apps/pipeline"
 
+DOCKER_COMPOSE_VER=1.13.0
 JENKINS_DIR=$BASE_DIR/jenkins
 SONARQUBE_DIR=$BASE_DIR/sonarqube
 SONARQUBE_CONF_DIR=$SONARQUBE_DIR/conf
@@ -29,6 +30,7 @@ DOCKER_REGISTRY_DIR=$BASE_DIR/docker/registry
 REPO_DIR=$BASE_DIR/repo
 INFRASTRUCTURE_DIR=$REPO_DIR/infrastructure
 WORK_DIR=$INFRASTRUCTURE_DIR/pipeline
+MYSQL_PWD_FILE=$WORK_DIR/secrets/mysql-root-pwd
 
 echo "********* Installing Docker *********"
 
@@ -51,8 +53,11 @@ sudo apt-get install docker-ce
 # Test that Docker installed correctly
 sudo docker run hello-world
 
+echo "********* Installing Docker Compose *********"
 # Install Docker Compose
-sudo apt-get install docker-compose
+sudo bash -c 'curl -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-Linux-x86_64 > /usr/bin/docker-compose'
+sudo chmod +x /usr/bin/docker-compose
+sudo docker-compose --version
 
 echo "********* Installing git & vim *********"
 
@@ -96,14 +101,26 @@ echo -e "HOST_SONAR_EXTENSIONS=$SONARQUBE_EXTENSIONS_DIR\n" >> $WORK_DIR/auto.en
 echo -e "HOST_SONAR_PLUGINS=$SONARQUBE_PLUGINS_DIR\n" >> $WORK_DIR/auto.env
 echo -e "HOST_NEXUS_DATA=$NEXUS_DIR\n" >> $WORK_DIR/auto.env
 echo -e "HOST_DOCKER_REGISTRY=$DOCKER_REGISTRY_DIR\n" >> $WORK_DIR/auto.env
-echo -e "MYSQL_ROOT_PASSWORD=\n" >> $WORK_DIR/auto.env
 echo -e "SONARQUBE_JDBC_USERNAME=\n" >> $WORK_DIR/auto.env
 echo -e "SONARQUBE_JDBC_PASSWORD=\n" >> $WORK_DIR/auto.env
+mv $WORK_DIR/.env $WORK_DIR/.env.bak
+mv $WORK_DIR/auto.env $WORK_DIR/.env
 
+echo "********* Building Docker images *********"
 # Run script to build Docker containers 
+cd $WORK_DIR
 sudo ./build-images
 
-echo "********* Booting up the build environment *********"
-# Run Docker Compose to stand up environment
-sudo docker-compose up -d
+echo ""
+echo ""
+echo "# ******************* Configure MYSQL Root Password ********************* #"
+echo "#                                                                         #"
+echo "# In order to complete installation, a file containing the MYSQL root     #"
+echo "# password must be created at:                                            #"
+echo "#                                                                         #"
+echo "# " + $MYSQL_PWD_FILE
+echo "#                                                                         #"
+echo "# ******************* Configure MYSQL Root Password ********************* #"
+
+
 
