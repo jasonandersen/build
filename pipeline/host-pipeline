@@ -134,4 +134,5 @@ touch $MYSQL_PWD_FILE
 chmod 600 $MYSQL_PWD_FILE
 echo $MYSQL_ROOT_PWD >> $MYSQL_PWD_FILE
 
-
+cd $WORK_DIR
+sudo docker-compose up
