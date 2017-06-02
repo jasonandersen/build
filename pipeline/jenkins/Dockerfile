@@ -2,7 +2,7 @@
 # Jason Andersen
 # 2016.07.16
 
-FROM base-jenkins
+FROM jenkins
 
 USER root
 
@@ -13,8 +13,8 @@ RUN apt-get update && apt-get install -y --force-yes maven
 RUN mkdir /opt/code && \
     chown -RH jenkins:jenkins /opt/code
 
-USER jenkins
-
 # Setup Jenkins plugins
-COPY plugins.txt /usr/share/jenkins/plugins.txt 
-RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
+COPY plugins.txt /usr/share/jenkins/ref/plugins.txt 
+RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
+
+USER jenkins
