@@ -34,7 +34,6 @@ MYSQL_PWD_FILE=$WORK_DIR/secrets/mysql-root-pwd
 
 echo "********* Installing Docker *********"
 
-# Install Docker
 sudo apt-get update
 sudo apt-get remove docker docker-engine
 sudo apt-get install \
@@ -63,23 +62,17 @@ sudo chmod +x /usr/bin/docker-compose
 sudo docker-compose --version
 
 echo "********* Installing git & vim *********"
-
-# Install git
 sudo apt-get install git
-
-# Install vim
 sudo apt-get install vim
 
 # Create directory to house code repository
 mkdir -p $REPO_DIR
 
 echo "********* Cloning infrastructure repository *********"
-# Clone into git infrastructure repository
 mkdir -p $INFRASTRUCTURE_DIR
 git clone https://github.com/jasonandersen/infrastructure.git $INFRASTRUCTURE_DIR
 
 echo "********* Building directories to house data from containers *********"
-# Create directories for all the build applications to house data on the host system.
 mkdir -pv $JENKINS_DIR
 mkdir -pv $SONARQUBE_CONF_DIR 
 mkdir -pv $SONARQUBE_DATA_DIR
@@ -109,12 +102,7 @@ echo -e "SONARQUBE_JDBC_PASSWORD=sonar\n" >> $WORK_DIR/auto.env
 mv $WORK_DIR/.env $WORK_DIR/.env.bak
 mv $WORK_DIR/auto.env $WORK_DIR/.env
 
-echo "********* Building Docker images *********"
-# Run script to build Docker containers 
-cd $WORK_DIR
-sudo ./build-images
-
-# Ask the user for a MySQL root password
+# Ask the user for a MySQL root password and store it in a file in the secrets directory
 echo ""
 echo ""
 echo ""
