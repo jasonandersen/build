@@ -116,11 +116,12 @@ echo ""
 echo ""
 echo "Please enter the password to use as the MYSQL root password:"
 
-read $MYSQL_ROOT_PWD
-
-touch $MYSQL_PWD_FILE
-chmod 600 $MYSQL_PWD_FILE
-echo $MYSQL_ROOT_PWD >> $MYSQL_PWD_FILE
+read MYSQL_ROOT_PWD
+clear
+echo $MYSQL_ROOT_PWD > $MYSQL_PWD_FILE
 
 cd $WORK_DIR
-sudo docker-compose up
+
+# This likely will fail the first time because the database takes awhile to setup the first time.
+sudo docker-compose up 
+
